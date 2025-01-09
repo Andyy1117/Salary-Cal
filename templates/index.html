@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Salary Calculator</h1>
+
+        <form method="POST">
+            <label for="days_worked">Days Worked:</label>
+            <input type="number" name="days_worked" id="days_worked" required><br>
+
+            <label for="late_time">Late Time (minutes):</label>
+            <input type="number" name="late_time" id="late_time" required><br>
+
+            <button type="submit">Calculate Salary</button>
+        </form>
+
+        {% if gross_salary %}
+        <h2>Salary Breakdown</h2>
+        <p><strong>Gross Salary:</strong> {{ "{:,.2f}".format(gross_salary) }}</p>
+        <p><strong>Late Penalty:</strong> {{ "{:,.2f}".format(late_penalty) }}</p>
+        <p><strong>Pretax Salary:</strong> {{ "{:,.2f}".format(pretax_salary) }}</p>
+        <p><strong>Tax Deduction:</strong> {{ "{:,.2f}".format(tax_deduction) }}</p>
+        <p><strong>Total Salary (After Tax):</strong> {{ "{:,.2f}".format(aftertax_salary) }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
